@@ -1,0 +1,12 @@
+default: &default
+    app_id: 'REPLACE_WITH_APP_ID'
+    app_secret: 'REPLACE_WITH_APP_SECRET'
+
+development:
+    <<: *default
+
+test:
+    <<: *default
+
+production:
+    <<: *default

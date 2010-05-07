@@ -1,0 +1,22 @@
+== User authentication with Facebook
+
+This demo project shows you how to use Facebook's user authentication in Ruby on Rails, using only their Javascript SDK.
+
+It uses sqlite3, and only has a user model and demo controller.
+
+Create the database and user table via 'rake db:migrate'
+
+Update the info in config/facebook.yml by creating your own Facebook applications on http://developers.facebook.com/setup/
+- use http://localhost:3000 as 'Site URL', but feel free use whatever you want for 'Site name'
+
+Fire up ./script/server and navigate to http://localhost:3000 - and log in.
+
+What happens when you log in is that Facebook's JavaScript that included in 'app/views/layouts/application.html.erb' writes a cookie on the client, that we let the web server access. 
+
+In our application_controller, we read this cookie and use that info to contact Facebook and get the user data.
+
+This cookie has two things that we use: Facebook user id of the authenticated user, and the access_token needed to access his profile information in Facebook's Graph API. Facebook also writes a md5 signature that we use to check if the cookie has been tampered with.
+
+As we check with facebook each time the access_token is changes, we can be sure that the user isn't spoofed. 
+
+http://developers.facebook.com/docs/authentication/

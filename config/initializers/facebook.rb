@@ -1,0 +1,2 @@
+FacebookConfig = YAML.load_file(Rails.root.join('config', 'facebook.yml'))[Rails.env]
+FacebookGraph = OAuth2::Client.new(FacebookConfig['app_id'], FacebookConfig['app_secret'], :site => 'https://graph.facebook.com')
